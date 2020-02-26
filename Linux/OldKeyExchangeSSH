@@ -1,0 +1,34 @@
+#!/bin/bash
+echo "Remember to run as root"
+echo "select an option"
+echo "1: I Know the Key Algorithm Combination and Cipher"
+echo "2: I'm not sure what Key Algorithm Combination and Cipher is need"
+read input
+if [ $input -eq "1" ]
+then
+        echo "What's the Key Algorithm Combination"
+        read algo
+        echo "What's the Ciper"
+        read ciper
+        echo "what's the ip"
+        read ip
+        echo "what's the username"
+        read user
+        echo "starting SSH Service"
+        sudo ssh -o$algo  -c $ciper $user@$ip
+
+elif [ $input -eq "2" ]
+then
+        echo "Select Device from below"
+        echo "1: CISCO 2960-S"
+        read ans
+        if [ $ans -eq "1" ]
+        then
+                echo "enter ip address"
+                read ip
+                sudo ssh -oKexAlgorithms=+diffie-hellman-group1-sha1  -c aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc admin@$ip
+        else
+                echo "more device MAYBE coming soon"
+
+fi
+fi
